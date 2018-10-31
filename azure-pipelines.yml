@@ -10,19 +10,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: echo $(pwd)
-- script: $path = $(pwd)
 
 - script: declare -a projectList=(
-    "$path/src/Services/Catalog/Catalog.API"
-    "$path/src/Services/Basket/Basket.API"
-    "$path/src/Services/Ordering/Ordering.API"
-    "$path/src/Services/Identity/Identity.API"
-    "$path/src/Services/Location/Locations.API"
-    "$path/src/Services/Marketing/Marketing.API"
-    "$path/src/Services/Payment/Payment.API"
-    "$path/src/Web/WebMVC"
-    "$path/src/Web/WebStatus" );
+    "./src/Services/Catalog/Catalog.API"
+    "./src/Services/Basket/Basket.API"
+    "./src/Services/Ordering/Ordering.API"
+    "./src/Services/Identity/Identity.API"
+    ",/src/Services/Location/Locations.API"
+    "./src/Services/Marketing/Marketing.API"
+    "./src/Services/Payment/Payment.API"
+    "./src/Web/WebMVC"
+    "./src/Web/WebStatus" );
   displayName: 'Build Project List Array'
 
 - script: for project in "${projectList[@]}"
