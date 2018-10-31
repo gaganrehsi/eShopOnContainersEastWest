@@ -23,17 +23,16 @@ steps:
     "$path/Services/Marketing/Marketing.API"
     "$path/Services/Payment/Payment.API"
     "$path/Web/WebMVC"
-    "$path/Web/WebStatus"
-);
+    "$path/Web/WebStatus" );
   displayName: 'Build Project List Array'
 
 - script: for project in "${projectList[@]}"
-do
+  do
     echo -e "\e[33mWorking on $path/$project"
     pushd $path/$project
     echo -e "\e[33m\tBuilding and publishing $project"
     dotnet publish -c Release -o obj/Docker/publish --verbosity quiet
     popd
-done
+  done;
   displayName: 'Building Each Project'
   
