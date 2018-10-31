@@ -7,6 +7,7 @@ WORKDIR /src
 COPY . .
 RUN dotnet restore -nowarn:msb3202,nu1503
 WORKDIR /src/src/Services/Basket/Basket.API
+RUN pwd && ls
 RUN dotnet build --no-restore -c Release -o /app
 
 FROM build AS publish
