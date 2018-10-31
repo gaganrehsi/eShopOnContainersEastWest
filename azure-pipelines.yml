@@ -10,8 +10,6 @@ variables:
   buildConfiguration: 'Release'
   path: $Build.SourcesDirectory
 
-- script: echo $BUILD_SOURCESDIRECTORY
-
 - script: declare -a projectList=(
     "$path/src/Services/Catalog/Catalog.API"
     "$path/src/Services/Basket/Basket.API"
