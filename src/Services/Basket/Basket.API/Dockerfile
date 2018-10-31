@@ -5,12 +5,9 @@ EXPOSE 80
 FROM microsoft/aspnetcore-build:2.0.5-2.1.4 AS build
 WORKDIR /src
 COPY . .
-RUN pwd
-RUN dotnet restore -nowarn:msb3202,nu1503
 WORKDIR /src/Services/Basket/Basket.API
-RUN pwd
-RUN ls
-RUN dotnet build --no-restore -c Release -o /app
+
+RUN dotnet build -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish --no-restore -c Release -o /app
