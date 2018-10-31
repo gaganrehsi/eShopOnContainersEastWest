@@ -8,7 +8,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  path: $Build.SourcesDirectory
+  path: $(Build.SourcesDirectory)
 
 - script: declare -a projectList=(
     "$path/src/Services/Catalog/Catalog.API"
