@@ -70,6 +70,7 @@ The script accepts following parameters:
 + `buildImages`: If `true` (default value) Docker images are built and pushed in the Docker registry. If you set this parameter to `false`, Docker images won't be built nor pushed in the Docker registry (but k8s' deployments and services will be redeployed).
 + `deployInfrastructure`: If `true` infrastructure containers (rabbitmq, mongo, redis, sql) will be deployed in k8s. If `false` those containers (and its related deployments and services in k8s) won't be deployed.
 + `dockerOrg`: Name of the organization in the registry where the images are (or will be pushed). Default value is `eshop` (which has images provided by Microsoft)
++ 'useACR': Defaults to $false, if set to true the dockerOrg parameter is not used, and the images are pulled from the top level of the ACR FQDN passed in the 'registry' parameter.
 
 **Important:** If you **don't pass the `-buildBits $true` the script won't build and publish the projects** to their `obj/Docker/publish` folder. If any project is not published, you'll be receiving errors like:
 
