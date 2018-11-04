@@ -31,9 +31,8 @@ function ExecKube($cmd) {
 $debugMode = $PSCmdlet.MyInvocation.BoundParameters["Debug"].IsPresent
 $useDockerHub = [string]::IsNullOrEmpty($registry)
 
-# $externalDns = & ExecKube -cmd 'get svc ingress-nginx -n ingress-nginx -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"'
-# changes by Don High to get working in AKS
-$externalDns = & ExecKube -cmd 'get svc my-nginx-nginx-ingress-controller -n kube-system  -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"'
+$externalDns = & ExecKube -cmd 'get svc ingress-nginx -n ingress-nginx -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"'
+
 Write-Host "Ingress ip detected: $externalDns" -ForegroundColor Yellow 
 
 if (-not [bool]($externalDns -as [ipaddress])) {
