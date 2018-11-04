@@ -10,7 +10,9 @@ Param(
     [parameter(Mandatory=$false)][bool]$buildImages=$true,
     [parameter(Mandatory=$false)][bool]$pushImages=$true,
     [parameter(Mandatory=$false)][bool]$deployInfrastructure=$true,
-    [parameter(Mandatory=$false)][string]$dockerOrg="eshop"
+    [parameter(Mandatory=$false)][string]$dockerOrg="eshop",
+    [parameter(Mandatory=$false)][bool]$useACR=$false
+
 )
 
 function ExecKube($cmd) {    
@@ -155,34 +157,55 @@ ExecKube -cmd "create -f $configFile"
 Write-Host "Creating deployments..." -ForegroundColor Yellow
 ExecKube -cmd 'create -f deployments.yaml'
 
-# update deployments with the correct image (with tag and/or registry)
-$registryPath = ""
-if (-not [string]::IsNullOrEmpty($registry)) {
-    $registryPath = "$registry/"
+if(-not $useACR){
+
+    # update deployments with the correct image (with tag and/or registry)
+    $registryPath = ""
+    if (-not [string]::IsNullOrEmpty($registry)) {
+        $registryPath = "$registry/"
+    }
+
+    Write-Host "Update Image containers to use prefix '$registry$dockerOrg' and tag '$imageTag'" -ForegroundColor Yellow
+    ExecKube -cmd 'set image deployments/basket basket=${registryPath}${dockerOrg}/basket.api:$imageTag'
+    ExecKube -cmd 'set image deployments/catalog catalog=${registryPath}${dockerOrg}/catalog.api:$imageTag'
+    ExecKube -cmd 'set image deployments/identity identity=${registryPath}${dockerOrg}/identity.api:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering ordering=${registryPath}${dockerOrg}/ordering.api:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering-backgroundtasks ordering-backgroundtasks=${registryPath}${dockerOrg}/ordering.backgroundtasks:$imageTag'
+    ExecKube -cmd 'set image deployments/marketing marketing=${registryPath}${dockerOrg}/marketing.api:$imageTag'
+    ExecKube -cmd 'set image deployments/locations locations=${registryPath}${dockerOrg}/locations.api:$imageTag'
+    ExecKube -cmd 'set image deployments/payment payment=${registryPath}${dockerOrg}/payment.api:$imageTag'
+    ExecKube -cmd 'set image deployments/webmvc webmvc=${registryPath}${dockerOrg}/webmvc:$imageTag'
+    ExecKube -cmd 'set image deployments/webstatus webstatus=${registryPath}${dockerOrg}/webstatus:$imageTag'
+    ExecKube -cmd 'set image deployments/webspa webspa=${registryPath}${dockerOrg}/webspa:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering-signalrhub ordering-signalrhub=${registryPath}${dockerOrg}/ordering.signalrhub:$imageTag'
+    ExecKube -cmd 'set image deployments/mobileshoppingagg mobileshoppingagg=${registryPath}${dockerOrg}/mobileshoppingagg:$imageTag'
+    ExecKube -cmd 'set image deployments/webshoppingagg webshoppingagg=${registryPath}${dockerOrg}/webshoppingagg:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwmm apigwmm=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwms apigwms=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwwm apigwwm=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwws apigwws=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
 }
-
-Write-Host "Update Image containers to use prefix '$registry$dockerOrg' and tag '$imageTag'" -ForegroundColor Yellow
-
-ExecKube -cmd 'set image deployments/basket basket=${registryPath}${dockerOrg}/basket.api:$imageTag'
-ExecKube -cmd 'set image deployments/catalog catalog=${registryPath}${dockerOrg}/catalog.api:$imageTag'
-ExecKube -cmd 'set image deployments/identity identity=${registryPath}${dockerOrg}/identity.api:$imageTag'
-ExecKube -cmd 'set image deployments/ordering ordering=${registryPath}${dockerOrg}/ordering.api:$imageTag'
-ExecKube -cmd 'set image deployments/ordering-backgroundtasks ordering-backgroundtasks=${registryPath}${dockerOrg}/ordering.backgroundtasks:$imageTag'
-ExecKube -cmd 'set image deployments/marketing marketing=${registryPath}${dockerOrg}/marketing.api:$imageTag'
-ExecKube -cmd 'set image deployments/locations locations=${registryPath}${dockerOrg}/locations.api:$imageTag'
-ExecKube -cmd 'set image deployments/payment payment=${registryPath}${dockerOrg}/payment.api:$imageTag'
-ExecKube -cmd 'set image deployments/webmvc webmvc=${registryPath}${dockerOrg}/webmvc:$imageTag'
-ExecKube -cmd 'set image deployments/webstatus webstatus=${registryPath}${dockerOrg}/webstatus:$imageTag'
-ExecKube -cmd 'set image deployments/webspa webspa=${registryPath}${dockerOrg}/webspa:$imageTag'
-ExecKube -cmd 'set image deployments/ordering-signalrhub ordering-signalrhub=${registryPath}${dockerOrg}/ordering.signalrhub:$imageTag'
-
-ExecKube -cmd 'set image deployments/mobileshoppingagg mobileshoppingagg=${registryPath}${dockerOrg}/mobileshoppingagg:$imageTag'
-ExecKube -cmd 'set image deployments/webshoppingagg webshoppingagg=${registryPath}${dockerOrg}/webshoppingagg:$imageTag'
-
-ExecKube -cmd 'set image deployments/apigwmm apigwmm=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
-ExecKube -cmd 'set image deployments/apigwms apigwms=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
-ExecKube -cmd 'set image deployments/apigwwm apigwwm=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
-ExecKube -cmd 'set image deployments/apigwws apigwws=${registryPath}${dockerOrg}/ocelotapigw:$imageTag'
+else {
+    Write-Host "Update Image containers to use prefix '$registry' and tag '$imageTag'" -ForegroundColor Yellow
+    ExecKube -cmd 'set image deployments/basket basket=${registry}/basket.api:$imageTag'
+    ExecKube -cmd 'set image deployments/catalog catalog=${registry}/catalog.api:$imageTag'
+    ExecKube -cmd 'set image deployments/identity identity=${registry}/identity.api:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering ordering=${registry}/ordering.api:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering-backgroundtasks ordering-backgroundtasks=${registry}/ordering.backgroundtasks:$imageTag'
+    ExecKube -cmd 'set image deployments/marketing marketing=${registry}/marketing.api:$imageTag'
+    ExecKube -cmd 'set image deployments/locations locations=${registry}/locations.api:$imageTag'
+    ExecKube -cmd 'set image deployments/payment payment=${registry}/payment.api:$imageTag'
+    ExecKube -cmd 'set image deployments/webmvc webmvc=${registry}/webmvc:$imageTag'
+    ExecKube -cmd 'set image deployments/webstatus webstatus=${registry}/webstatus:$imageTag'
+    ExecKube -cmd 'set image deployments/webspa webspa=${registry}/webspa:$imageTag'
+    ExecKube -cmd 'set image deployments/ordering-signalrhub ordering-signalrhub=${registry}/ordering.signalrhub:$imageTag'
+    ExecKube -cmd 'set image deployments/mobileshoppingagg mobileshoppingagg=${registry}/mobileshoppingagg:$imageTag'
+    ExecKube -cmd 'set image deployments/webshoppingagg webshoppingagg=${registry}/webshoppingagg:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwmm apigwmm=${registry}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwms apigwms=${registry}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwwm apigwwm=${registry}/ocelotapigw:$imageTag'
+    ExecKube -cmd 'set image deployments/apigwws apigwws=${registry}/ocelotapigw:$imageTag'
+}
 
 Write-Host "Execute rollout..." -ForegroundColor Yellow
 ExecKube -cmd 'rollout resume deployments/basket'
