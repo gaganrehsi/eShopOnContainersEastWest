@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: basket
-        image: eshop/basket.api
+        image: fseshop.azurecr.io/basket.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -69,7 +69,7 @@ spec:
     spec:
       containers:
       - name: catalog
-        image: eshop/catalog.api
+        image: fseshop.azurecr.io/catalog.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -121,7 +121,7 @@ spec:
     spec:
       containers:
       - name: identity
-        image: eshop/identity.api
+        image: fseshop.azurecr.io/identity.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -210,7 +210,7 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: eshop/ordering.api
+        image: fseshop.azurecr.io/ordering.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -277,7 +277,7 @@ spec:
     spec:
       containers:
       - name: ordering-backgroundtasks
-        image: eshop/ordering.backgroundtasks
+        image: fseshop.azurecr.io/ordering.backgroundtasks:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:        
         - name: ConnectionString
@@ -336,7 +336,7 @@ spec:
     spec:
       containers:
       - name: ordering-signalrhub
-        image: eshop/ordering.signalrhub
+        image: fseshop.azurecr.io/ordering.signalrhub:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:                
         - name: EventBusConnection
@@ -387,7 +387,7 @@ spec:
     spec:
       containers:
       - name: locations
-        image: eshop/locations.api
+        image: fseshop.azurecr.io/locations.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -454,7 +454,7 @@ spec:
     spec:
       containers:
       - name: marketing
-        image: eshop/marketing.api
+        image: fseshop.azurecr.io/marketing.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -531,7 +531,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: eshop/payment.api
+        image: fseshop.azurecr.io/payment.api:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -573,7 +573,7 @@ spec:
     spec:
       containers:
       - name: webmvc
-        image: eshop/webmvc
+        image: fseshop.azurecr.io/webmvc:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -677,7 +677,7 @@ spec:
     spec:
       containers:
       - name: webstatus
-        image: eshop/webstatus
+        image: fseshop.azurecr.io/webstatus:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
@@ -758,7 +758,7 @@ spec:
     spec:
       containers:
       - name: webspa
-        image: eshop/webspa
+        image: fseshop.azurecr.io/webspa:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: ASPNETCORE_URLS
@@ -852,7 +852,7 @@ spec:
     spec:
       containers:
       - name: webshoppingagg
-        image: eshop/webshoppingagg
+        image: fseshop.azurecr.io/webshoppingagg:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: ASPNETCORE_URLS
@@ -896,7 +896,7 @@ spec:
     spec:
       containers:
       - name: mobileshoppingagg
-        image: eshop/mobileshoppingagg
+        image: fseshop.azurecr.io/mobileshoppingagg:v1.#{Build.BuildId}#
         imagePullPolicy: Always
         env:
         - name: ASPNETCORE_URLS
