@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: basket
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -60,7 +60,7 @@ kind: Deployment
 metadata:
   name: catalog
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -112,7 +112,7 @@ kind: Deployment
 metadata:
   name: identity
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -201,7 +201,7 @@ kind: Deployment
 metadata:
   name: ordering
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -268,7 +268,7 @@ kind: Deployment
 metadata:
   name: ordering-backgroundtasks
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -327,7 +327,7 @@ kind: Deployment
 metadata:
   name: ordering-signalrhub
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -378,7 +378,7 @@ kind: Deployment
 metadata:
   name: locations
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -445,7 +445,7 @@ kind: Deployment
 metadata:
   name: marketing
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -522,7 +522,7 @@ kind: Deployment
 metadata:
   name: payment
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -564,7 +564,7 @@ kind: Deployment
 metadata:
   name: webmvc
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -668,7 +668,7 @@ kind: Deployment
 metadata:
   name: webstatus
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -749,7 +749,7 @@ kind: Deployment
 metadata:
   name: webspa
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -843,7 +843,7 @@ kind: Deployment
 metadata:
   name: webshoppingagg
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
@@ -887,7 +887,7 @@ kind: Deployment
 metadata:
   name: mobileshoppingagg
 spec:
-  paused: true
+  paused: false
   template:
     metadata:
       labels:
