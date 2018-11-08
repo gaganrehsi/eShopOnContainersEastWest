@@ -34,14 +34,3 @@ kubectl config use-context eshopakswest
 
 ./deploy-ingress-azure.ps1
 
-kubectl config use-context eshopaksdev
-
-./deploy.ps1 -buildImages $false -configFile conf_local.yaml -imageTag latest -pushImages $false -registry fseshop.azurecr.io -dockerUser FSeshop -dockerPassword V0C7hGc9pfXQmysQjtAr/BdPXHSSvLeg -useACR $true
-
-kubectl config use-context eshopakseast
-
-./deploy.ps1 -buildImages $false -configFile conf_local.yaml -imageTag latest -pushImages $false -registry fseshop.azurecr.io -dockerUser FSeshop -dockerPassword V0C7hGc9pfXQmysQjtAr/BdPXHSSvLeg -useACR $true
-
-kubectl config use-context eshopakswest
-
-./deploy.ps1 -buildImages $false -configFile conf_local.yaml -imageTag latest -pushImages $false -registry fseshop.azurecr.io -dockerUser FSeshop -dockerPassword V0C7hGc9pfXQmysQjtAr/BdPXHSSvLeg -useACR $true
