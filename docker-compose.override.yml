@@ -6,6 +6,8 @@ version: '3.4'
 # but values present in the environment vars at runtime will always override those defined inside the .env file
 # An external IP or DNS name has to be used (instead localhost and the 10.0.75.1 IP) when testing the Web apps and the Xamarin apps from remote machines/devices using the same WiFi, for instance.
 
+# Update token values in local copy of .env file to override during docker-compose
+
 services:
       
   basket.api:
@@ -18,7 +20,7 @@ services:
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}      
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
       - UseLoadTest=${USE_LOADTEST:-False}
@@ -39,7 +41,7 @@ services:
       - AzureStorageAccountName=${ESHOP_AZURE_STORAGE_CATALOG_NAME}
       - AzureStorageAccountKey=${ESHOP_AZURE_STORAGE_CATALOG_KEY}
       - UseCustomizationData=True
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - AzureStorageEnabled=False
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
@@ -78,7 +80,7 @@ services:
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}          
       - UseCustomizationData=True
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - CheckUpdateTime=30000
       - GracePeriodTime=1
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
@@ -98,7 +100,7 @@ services:
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}          
       - UseCustomizationData=True
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - CheckUpdateTime=30000
       - GracePeriodTime=1
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
@@ -123,7 +125,7 @@ services:
       - PicBaseUrl=${ESHOP_AZURE_STORAGE_MARKETING_URL:-http://localhost:5110/api/v1/campaigns/[0]/pic/}
       - AzureStorageAccountName=${ESHOP_AZURE_STORAGE_MARKETING_NAME}
       - AzureStorageAccountKey=${ESHOP_AZURE_STORAGE_MARKETING_KEY}
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - AzureStorageEnabled=False
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
@@ -199,7 +201,7 @@ services:
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}          
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
     ports:
@@ -217,7 +219,7 @@ services:
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}          
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
       - UseLoadTest=${USE_LOADTEST:-False}
@@ -310,7 +312,7 @@ services:
       - EventBusConnection=${ESHOP_AZURE_SERVICE_BUS:-rabbitmq}
       - EventBusUserName=${ESHOP_SERVICE_BUS_USERNAME}
       - EventBusPassword=${ESHOP_SERVICE_BUS_PASSWORD}          
-      - AzureServiceBusEnabled=False
+      - AzureServiceBusEnabled=${ESHOP_USE_AZURESB:-False}
       - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
       - OrchestratorType=${ORCHESTRATOR_TYPE}
       - identityUrl=http://identity.api              #Local: You need to open your local dev-machine firewall at range 5100-5110.
