@@ -266,12 +266,17 @@
             services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
             services.AddTransient<OrderStatusChangedToAwaitingValidationIntegrationEventHandler>();
             services.AddTransient<OrderStatusChangedToPaidIntegrationEventHandler>();
+            //GEO: Added PriceChange Integration handler
+            services.AddTransient<ProductPriceChangedIntegrationEventHandler>();
         }
         protected virtual void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<OrderStatusChangedToAwaitingValidationIntegrationEvent, OrderStatusChangedToAwaitingValidationIntegrationEventHandler>();
             eventBus.Subscribe<OrderStatusChangedToPaidIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
+            //GEO: Added EventBus Subscription for PriceChangeIntegrationEvent
+            eventBus.Subscribe<ProductPriceChangedIntegrationEvent, ProductPriceChangedIntegrationEventHandler>();
+
         }
     }
 }
