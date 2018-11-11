@@ -156,7 +156,7 @@ Write-Host "Deploying configuration from $configFile" -ForegroundColor Yellow
 ExecKube -cmd "create -f $configFile"
 
 Write-Host "Creating deployments..." -ForegroundColor Yellow
-ExecKube -cmd 'create -f deployments.yaml'
+ExecKube -cmd 'apply -f deployments.yaml'
 
 if(-not $useACR){
 
