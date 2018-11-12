@@ -94,6 +94,11 @@ spec:
            configMapKeyRef:
              name: externalcfg
              key: all__EventBusConnection
+        - name: AzureServiceBusEnabled
+          valueFrom:
+            configMapKeyRef:
+              name: externalcfg
+              key: all__UseAzureServiceBus
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
            configMapKeyRef:
