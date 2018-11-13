@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28302.56
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateItemPriceInEast", "UpdateItemPriceInEast\UpdateItemPriceInEast.csproj", "{BEC5FD81-BBA5-45F1-94C1-1E01F385A9AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC5FD81-BBA5-45F1-94C1-1E01F385A9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC5FD81-BBA5-45F1-94C1-1E01F385A9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC5FD81-BBA5-45F1-94C1-1E01F385A9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC5FD81-BBA5-45F1-94C1-1E01F385A9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09EA1119-509C-49E4-86EA-6BEA7E63F462}
+	EndGlobalSection
+EndGlobal

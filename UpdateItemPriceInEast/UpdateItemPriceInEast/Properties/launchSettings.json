@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "UpdateItemPriceInEast": {
+      "commandName": "Project",
+      "commandLineArgs": "2 122"
+    }
+  }
+}
