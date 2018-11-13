@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: catalog
+spec:
+  paused: false
+  template:
+    metadata:
+      labels:
+        app: eshop
+        component: catalog
+    spec:
+      containers:
+      - name: catalog
+        image: fseshop.azurecr.io/catalog.api:v1.65
+        imagePullPolicy: Always
+        env:
+        - name: PATH_BASE
+          value: /catalog-api
+        - name: ConnectionString
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: catalog__ConnectionString
+        - name: PicBaseUrl
+          valueFrom:
+           configMapKeyRef:
+             name: urls
+             key: PicBaseUrl
+        - name: AzureStorageEnabled
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: catalog__AzureStorageEnabled
+        - name: EventBusConnection
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: all__EventBusConnection
+        - name: AzureServiceBusEnabled
+          valueFrom:
+            configMapKeyRef:
+              name: externalcfg
+              key: all__UseAzureServiceBus
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+           configMapKeyRef:
+             name: externalcfg
+             key: all__InstrumentationKey
+        - name: OrchestratorType
+          value: 'K8S' 
+        ports:
+        - containerPort: 80
+        
+      imagePullSecrets:
+      - name: registry-key
+---

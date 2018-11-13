@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: externalcfg
+  labels:
+    app: eshop  
+data:
+  basket__ConnectionString: basket-data
+  catalog__ConnectionString: Server=sql-data;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word;
+  catalog__AzureStorageEnabled: "False"
+  identity__ConnectionString: Server=sql-data;Initial Catalog=Microsoft.eShopOnContainers.Services.IdentityDb;User Id=sa;Password=Pass@word;
+  locations__ConnectionString: mongodb://nosql-data
+  locations__Database: LocationsDb
+  marketing__MongoConnectionString: mongodb://nosql-data
+  marketing__MongoDatabase: MarketingDb
+  marketing__ConnectionString: Server=sql-data;Initial Catalog=Microsoft.eShopOnContainers.Services.MarketingDb;User Id=sa;Password=Pass@word;
+  ordering__ConnectionString: Server=sql-data;Initial Catalog=Microsoft.eShopOnContainers.Services.OrderingDb;User Id=sa;Password=Pass@word;
+  keystore: keystore-data
+  GracePeriodManager__GracePeriodTime: "1"
+  GracePeriodManager__CheckUpdateTime: "15000"
+  all__EventBusConnection: Endpoint=sb://eshopsb6ubkcr6wttr4i.servicebus.windows.net/;SharedAccessKeyName=Root;SharedAccessKey=C9CXC7rCVlxVe5st7jsSttfQwvHyZPLc0ifyJf9BcX0=;EntityPath=eshop_event_bus
+  all__InstrumentationKey: "098e1911-bbd2-4365-b6d4-098968a78d07"
+  all__EnableLoadTest: "False"
+  all__UseAzureServiceBus: "True"
