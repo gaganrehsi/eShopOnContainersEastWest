@@ -32,6 +32,8 @@
                 // Update current product
                 var oldPrice = catalogItem.Price;
 
+                catalogItem.Price = command.NewPrice;
+
                 _catalogContext.CatalogItems.Update(catalogItem);
 
                 // Save product's data and publish integration event through the Event Bus if price has changed
