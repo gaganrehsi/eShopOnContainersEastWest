@@ -21,6 +21,11 @@ namespace UpdateItemPriceInEast
         static void Main(string[] args)
         {
 
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        static async Task MainAsync(string[] args)
+        { 
             topicClient = new TopicClient(ServiceBusWriteConnectionString, TopicName);
 
             var @event = new ProductPriceChangedIntegrationEvent(Convert.ToInt32(args[0]),Convert.ToDecimal(args[1]),0);
@@ -35,7 +40,9 @@ namespace UpdateItemPriceInEast
                 Label = "ProductPriceChanged",
             };
 
-            topicClient.SendAsync(message);
+            await topicClient.SendAsync(message);
+
+            Console.WriteLine("message sent");
         }
     }
 }
